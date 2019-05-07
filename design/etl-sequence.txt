@@ -1,0 +1,7 @@
+@startuml
+Program -> Controller : run()
+Controller->Controller : createClasses()
+Controller -> IExtractor : dataTable = extract()
+Controller -> ITransformer : transformedDataTable = transform( dataTable )
+Controller -> ILoader : load( transformedDataTable )
+@enduml

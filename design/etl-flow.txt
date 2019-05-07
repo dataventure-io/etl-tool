@@ -1,0 +1,5 @@
+@startuml
+(*) -right-> Extract
+Extract -right-> Transform
+Transform -right-> Load
+@enduml

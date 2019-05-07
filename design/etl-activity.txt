@@ -1,0 +1,14 @@
+@startuml
+(*) --> ExcelExtractor
+(*) --> CsvExtractor
+(*) --> SqlServerExtractor
+ExcelExtractor --> Controller
+CsvExtractor --> Controller
+SqlServerExtractor --> Controller
+Controller --> SQLServerLoader
+Controller --> CsvLoader
+Controller --> ExcelLoader
+Controller -right-> Transformer
+Transformer -left-> Controller
+
+@enduml

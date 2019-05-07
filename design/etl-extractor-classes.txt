@@ -1,0 +1,6 @@
+@startuml
+IExtractor <|-- AbstractExtractor
+AbstractExtractor <|-- ExcelExtractor
+AbstractExtractor <|-- CsvExtractor
+AbstractExtractor <|-- SqlServerExtractor
+@enduml
