@@ -3,3 +3,6 @@
 ################################################################################
 
 /src/etl.lib/obj/Debug
+/src/etl.perf.test/obj/Debug
+/src/etl.test/obj/Debug
+/src/etl/obj/Debug

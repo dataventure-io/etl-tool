@@ -15,7 +15,7 @@ namespace etl.lib.transformer
 
         }
 
-        public override DataTable transform(Arguments arg, DataTable data)
+        public override DataTable transform( DataTable data)
         {
             return data;
         }

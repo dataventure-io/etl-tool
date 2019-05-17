@@ -3,8 +3,8 @@ using etl.lib.util;
 
 namespace etl.lib.transformer
 {
-    public interface ITransformer
+    public interface ITransformer : IArguments
     {
-        DataTable transform(Arguments arg, DataTable data);
+        DataTable transform( DataTable data);
     }
 }

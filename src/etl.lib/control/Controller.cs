@@ -72,13 +72,16 @@ namespace etl.lib.control
             DataTable data = null;
 
             Logger.info(extractor.GetType().ToString() + " Extraction Start");
-            data = extractor.extract(arg);
+            extractor.setArgs(arg);
+            data = extractor.extract();
 
             Logger.info(transformer.GetType().ToString() + " Transformation Start");
-            data = transformer.transform(arg, data);
+            transformer.setArgs(arg);
+            data = transformer.transform( data);
 
             Logger.info(loader.GetType().ToString() + " Loading Start");
-            loader.load(arg, data);
+            loader.setArgs(arg);
+            loader.load(data);
             Logger.info(loader.GetType().ToString() + " Loading Complete");
         }
 

@@ -48,10 +48,9 @@ namespace etl.lib.loader
             }
         }
 
-        public override void load(Arguments arg, DataTable data)
+        public override void load( DataTable data)
         {
-            this.arguments = arg;
-            connect(arg);
+            connect(arguments);
 
             int rows = data.Rows.Count;
 

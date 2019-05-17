@@ -3,9 +3,9 @@ using etl.lib.util;
 
 namespace etl.lib.loader
 {
-    public interface ILoader
+    public interface ILoader : IArguments
     {
-        void load(Arguments arg, DataTable data);
+        void load(DataTable data);
     }
 
 

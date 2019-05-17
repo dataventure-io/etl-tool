@@ -11,7 +11,8 @@ namespace etl.lib.transformer
 {
     public class FormatTransformer : AbstractTransformer, ITransformer
     {
-        public override DataTable transform(Arguments arg, DataTable data)
+        // TODO - implement format transformer
+        public override DataTable transform( DataTable data)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,11 @@ namespace etl.lib.loader
     {
         protected Arguments arguments = null;
 
-        public virtual void load( Arguments arg, DataTable data)
+        public virtual void load( DataTable data)
+        {
+        }
+
+        public void setArgs(Arguments arg)
         {
             this.arguments = arg;
         }

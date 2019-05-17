@@ -10,9 +10,16 @@ namespace etl.lib.transformer
 {
     public class AbstractTransformer : ITransformer
     {
-        public virtual DataTable transform( Arguments arg, DataTable data)
+        Arguments arguments = null;
+
+        public virtual DataTable transform( DataTable data)
         {
             throw new NotImplementedException();
+        }
+
+        public void setArgs(Arguments arg)
+        {
+            this.arguments = arg;
         }
 
         private object getValue(DataColumn dc, DataRow srcRow, int c)
