@@ -20,7 +20,7 @@ namespace etl.lib.extractor
 
         public void setArgs(Arguments arg)
         {
-            this.arguments = arg);
+            this.arguments = arg;
         }
     }
 }

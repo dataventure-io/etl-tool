@@ -7,39 +7,91 @@ using System.Threading.Tasks;
 using etl.lib.util;
 using System.Reflection;
 using Microsoft.Office.Interop.Excel;
+using System.IO;
 
 namespace etl.lib.loader
 {
     public class ExcelLoader : AbstractLoader
     {
         //TODO - Create Excel Loader
-        public override void load( System.Data.DataTable data)
+        public override void load(System.Data.DataTable data)
         {
-            // copy the template file to the output folder
             string targetFile = getTargetFile();
             string sheetName = SheetName;
 
-            // copy the template file to a serialized filename or
-            // create a new file with a serialized filename
-            // open the target file using COM
-            // write to the target sheet - check if it exists first.  If the target sheet does not exist, create it
+            var excelApp = new Microsoft.Office.Interop.Excel.Application();
 
+            Microsoft.Office.Interop.Excel.Workbook workbook = getWorkbook(targetFile, excelApp); ;
 
-            Microsoft.Office.Interop.Excel.Application xl_app = (Microsoft.Office.Interop.Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
-                Excel.Workbook xl_workbook = null;
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = getWorksheet(sheetName, workbook);
 
-            // TODO - if the file exists, open the file
-            // TODO - if the file does not exist, create a new file, add a sheet called <sheetName>
-            /*
-                xl_workbook = xl_app.ActiveWorkbook;
-                Excel.Worksheet sheet = null;
-                sheet = (Excel.Worksheet)xl_workbook.Worksheets.get_Item("Sheet1");
-                sheet.Cells[1, 1] = "Name";
-                
-             */
+            setColumnHeaders(data, worksheet);
 
-
+            fill(data, worksheet);
         }
+
+        private  void fill(System.Data.DataTable data, Worksheet worksheet)
+        {
+            for (int r = 0; r < data.Rows.Count; r++)
+            {
+                DataRow row = data.Rows[r];
+                for (int c = 0; c < data.Columns.Count; c++)
+                {
+                    Microsoft.Office.Interop.Excel.Range cell = worksheet.Cells[r + 2, c + 1];
+                    cell.Value = row[c];
+                }
+            }
+        }
+
+        private  void setColumnHeaders(System.Data.DataTable data, Worksheet worksheet)
+        {
+            for (int c = 0; c < data.Columns.Count; c++)
+            {
+                Microsoft.Office.Interop.Excel.Range cell = worksheet.Cells[1, c];
+                cell.Value = data.Columns[c].ColumnName;
+            }
+        }
+
+        private  Worksheet getWorksheet(string sheetName, Workbook workbook)
+        {
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
+
+            bool found = false;
+            for (int i = 1; (i <= workbook.Worksheets.Count) && !found; i++)
+            {
+                worksheet = workbook.Worksheets[i];
+                string name = worksheet.Name.ToLower();
+
+                if (string.Equals(sheetName, name, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                worksheet = workbook.Worksheets.Add();
+                worksheet.Name = sheetName;
+            }
+
+            return worksheet;
+        }
+
+        private Workbook getWorkbook(string targetFile, Application excelApp)
+        {
+            Workbook workbook;
+            if (File.Exists(targetFile))
+            {
+                workbook = excelApp.Workbooks.Open(targetFile);
+            }
+            else
+            {
+                workbook = excelApp.ActiveWorkbook;
+            }
+
+            return workbook;
+        }
+
         string OutputFolder
         {
             //TODO - add macro support for Excel output folder location

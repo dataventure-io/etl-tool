@@ -18,7 +18,7 @@ namespace etl.yahoo.fin
 
         }
 
-        public override DataTable transform(Arguments arg, DataTable data)
+        public override DataTable transform(A DataTable data)
         {
             DataTable transformedData = new DataTable();
 

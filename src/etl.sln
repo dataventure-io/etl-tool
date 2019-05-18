@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl", "etl\etl.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl.lib", "etl.lib\etl.lib.csproj", "{15FFE01C-84E6-4FAC-9827-DFFB5E34A03B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl.perf.test", "etl.perf.test\etl.perf.test.csproj", "{79B56DE3-7B09-4C6B-BC48-FC0A7EAAA9F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "etl.test", "etl.test\etl.test.csproj", "{49AD058C-EE3D-4A39-9ACE-DE7A333168CD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,14 +21,6 @@ Global
 		{15FFE01C-84E6-4FAC-9827-DFFB5E34A03B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15FFE01C-84E6-4FAC-9827-DFFB5E34A03B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15FFE01C-84E6-4FAC-9827-DFFB5E34A03B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79B56DE3-7B09-4C6B-BC48-FC0A7EAAA9F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79B56DE3-7B09-4C6B-BC48-FC0A7EAAA9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79B56DE3-7B09-4C6B-BC48-FC0A7EAAA9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79B56DE3-7B09-4C6B-BC48-FC0A7EAAA9F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49AD058C-EE3D-4A39-9ACE-DE7A333168CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49AD058C-EE3D-4A39-9ACE-DE7A333168CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49AD058C-EE3D-4A39-9ACE-DE7A333168CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49AD058C-EE3D-4A39-9ACE-DE7A333168CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
