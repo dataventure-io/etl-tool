@@ -136,8 +136,10 @@ namespace etl.lib.control
                     o = inst.Unwrap();
                     found = true;
                 }   
-                catch
-                { }
+                catch(Exception x)
+                {
+                    Logger.info(x.Message);
+                }
             }
 
             if (!found) throw new EtlException("Class cannot be instantiated: " + className);

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="extractor\AbstractExtractor.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="loader\AbstractFileLoader.cs" />
     <Compile Include="loader\AbstractLoader.cs" />
     <Compile Include="loader\CsvLoader.cs" />
     <Compile Include="loader\ExcelLoader.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="control\Controller.cs" />
     <Compile Include="extractor\CsvExtractor.cs" />
     <Compile Include="transformer\DefaultTransformer.cs" />
+    <Compile Include="util\Config.cs" />
     <Compile Include="util\EtlException.cs" />
     <Compile Include="extractor\ExcelExtractor.cs" />
     <Compile Include="transformer\FormatTransformer.cs" />
