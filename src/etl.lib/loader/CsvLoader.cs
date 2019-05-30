@@ -13,7 +13,11 @@ namespace etl.lib.loader
 {
     public class CsvLoader : AbstractFileLoader
     {
-        // TODO - Create CSV Loader
+        public CsvLoader()
+        {
+
+        }
+        // TODO - Test CSV Loader
         public override void load(DataTable data)
         {
             string targetFile = getTargetFile();

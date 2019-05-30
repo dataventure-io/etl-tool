@@ -17,7 +17,6 @@ namespace etl.lib.loader
         {
 
         }
-        //TODO - Create Excel Loader
         public override void load(System.Data.DataTable data)
         {
             string targetFile = getTargetFile();
