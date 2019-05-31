@@ -6,10 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
-using FileHelpers;
-using FileHelpers.Dynamic;
 using etl.lib.util;
-using FileHelpers.Detection;
 
 namespace etl.lib.extractor
 {
@@ -54,6 +51,7 @@ namespace etl.lib.extractor
             if (!File.Exists(filename)) throw new EtlException(GetType(), filename + " does not exist.");
 
 
+            /*
 
             var detector = new FileHelpers.Detection.SmartFormatDetector();
             RecordFormatInfo format = findBestFormat(detector.DetectFileFormat(filename));
@@ -81,31 +79,11 @@ namespace etl.lib.extractor
             {
                 dataTable.Merge(fileDataTable);
             }
-
+            */
             return dataTable;
         }
 
-        private  RecordFormatInfo findBestFormat(RecordFormatInfo[] formats)
-        {
-            RecordFormatInfo bestFormat = null;
-
-            foreach (RecordFormatInfo format in formats)
-            {
-                if (bestFormat == null)
-                {
-                    bestFormat = format;
-                }
-                else
-                {
-                    if (format.Confidence > bestFormat.Confidence)
-                    {
-                        bestFormat = format;
-                    }
-                }
-            }
-
-            return bestFormat;
-        }
+        
 
         public string SourceDirectory
         {
