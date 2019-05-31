@@ -8,3 +8,4 @@
 /src/etl/obj/Debug
 /data/output/xslx_output_test.20190519_204108_985.xlsx
 /src/etl/etl.csproj.user
+*.suo
