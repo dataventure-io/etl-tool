@@ -45,6 +45,7 @@ namespace etl.lib.transformer
             System.IO.StreamReader file = new System.IO.StreamReader(FormatFile);
             while ((line = file.ReadLine()) != null)
             {
+                /*
                 ColDef colDef = new ColDef();
                 string[] parts = line.Split(new char[] { ':', '=' }); ;
                 colDef.fromName = getFormatPart(parts, i++); ;
@@ -60,6 +61,7 @@ namespace etl.lib.transformer
                 fromType = parts[1];
 
                 System.Console.WriteLine(line);
+                */
             }
 
             file.Close();
