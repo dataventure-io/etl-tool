@@ -10,7 +10,8 @@ namespace etl.lib.transformer
 {
     public class AbstractTransformer : ITransformer
     {
-        Arguments arguments = null;
+        
+        protected Arguments arguments = null;
 
         public virtual DataTable transform( DataTable data)
         {
