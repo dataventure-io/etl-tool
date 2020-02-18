@@ -37,9 +37,8 @@ namespace etl.lib.extractor
             }
         }
 
-        public override DataTable extract(Arguments arg)
+        public override DataTable extract()
         {
-            base.extract(arg);
 
             string fileName = ExcelFile;
             string sheetname = SheetName;

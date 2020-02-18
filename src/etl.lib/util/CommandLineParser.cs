@@ -64,23 +64,17 @@ namespace etl.lib.util
             string line = string.Empty;
             try
             {
-                System.IO.StreamReader file = new System.IO.StreamReader(filename);
-                while ((line = file.ReadLine()) != null)
+                Config config = new Config(filename);
+
+                for(int i = 0; i < config.getCount(); i++)
                 {
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-
-                    line = line.Trim();
-
-                    if (line.StartsWith("#")) continue;
-
-                    string[] parts = line.Split(new char[] { '=' });
-                    string paramName = parts[0];
-                    string paramValue = parts[1];
+                    string paramName = config.getName(i);
+                    string paramValue = config.getValue(paramName);
 
                     arguments.addArgument(paramName.Trim(), paramValue?.Trim());
                 }
 
-                file.Close();
+
             }
             catch(Exception x)
             {

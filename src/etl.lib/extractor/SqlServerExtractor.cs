@@ -51,9 +51,8 @@ namespace etl.lib.extractor
             return sb.ToString();
         }
 
-        public override DataTable extract(Arguments arg)
+        public override DataTable extract()
         {
-            base.extract(arg);
 
             DataTable dataTable = read<SqlConnection, SqlDataAdapter>(Server, Database, Query);
 
