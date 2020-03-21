@@ -8,7 +8,7 @@ namespace etl.lib.util
 {
     public class CommandLineParser
     {
-        protected static string usage = "etl -cfg <configfile> | -extractor classname=Excel excelfile=<excelfile> sheetname=<sheetname> [-transformer classname=Format filename=<filename>] -loader classname=SqlServer server=<server> database=<database> table=<table>";
+        protected static string usage = "etl  <configfile>";
 
         public static string Usage {  get { return usage; } }
         public static Arguments  parse( string[] args )
@@ -21,27 +21,9 @@ namespace etl.lib.util
 
                 while (i < args.Length)
                 {
-                    string token = args[i++];
+                    string filename = args[i++];
 
-                    if (token.StartsWith("-"))
-                    {
-                        if ((token.Equals("-cfg")) || (token.Equals("-config")))
-                        {
-                            loadConfig(arguments, args[i++]);
-                        }
-                        else
-                        {
-                            module = token.Substring(1, token.Length - 1);
-                        }
-                    }
-                    else
-                    {
-                        string[] parts = token.Split(new char[] { '=' });
-                        string paramName = parts[0];
-                        string paramValue = parts[1];
-
-                        arguments.addArgument(module + "_" + paramName, paramValue);
-                    }
+                    arguments = loadConfig( filename );
                 }
             }
             catch (Exception x)
@@ -54,33 +36,10 @@ namespace etl.lib.util
 
         public static Arguments loadConfig( string filename )
         {
-            Arguments arguments = new Arguments();
-            loadConfig(arguments, filename);
-            return arguments;
+            return  Arguments.loadConfig(filename);
         }
 
-        protected static void loadConfig( Arguments arguments, string filename )
-        {
-            string line = string.Empty;
-            try
-            {
-                Config config = new Config(filename);
-
-                for(int i = 0; i < config.getCount(); i++)
-                {
-                    string paramName = config.getName(i);
-                    string paramValue = config.getValue(paramName);
-
-                    arguments.addArgument(paramName.Trim(), paramValue?.Trim());
-                }
-
-
-            }
-            catch(Exception x)
-            {
-                throw new EtlException("Error reading " + filename, x);
-            }
-        }
+       
     }
 
 

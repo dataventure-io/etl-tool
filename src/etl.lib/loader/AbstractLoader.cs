@@ -12,6 +12,16 @@ namespace etl.lib.loader
     {
         protected Arguments arguments = null;
 
+        public AbstractLoader()
+        {
+
+        }
+
+        public AbstractLoader(Arguments arg)
+        {
+            setArgs(arg);
+        }
+
         public virtual void load( DataTable data)
         {
         }

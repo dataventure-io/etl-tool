@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using etl.lib.util;
 
 namespace etl.lib.loader
 {
@@ -11,7 +12,16 @@ namespace etl.lib.loader
     {
         protected string _defaultDelim = ",";
         protected string _defaultOutputDir = ".";
-        
+
+        public AbstractFileLoader():base()
+        {
+
+        }
+
+        public AbstractFileLoader(Arguments arg):base(arg)
+        {
+
+        }
 
         protected string OutputFolder
         {
@@ -39,7 +49,7 @@ namespace etl.lib.loader
             get
             {
                 string baseName = arguments.getValue(GetType(), MethodBase.GetCurrentMethod().Name);
-                if (string.IsNullOrEmpty(baseName)) baseName = etl.lib.util.Config.Current.BaseName;
+                if (string.IsNullOrEmpty(baseName)) baseName = System.IO.Path.GetFileNameWithoutExtension(TemplateFileName);
                 return baseName;
             }
         }
@@ -73,7 +83,7 @@ namespace etl.lib.loader
                 string[] parts = templateFileName.Split(new char[] { '.' });
                 ext = parts[parts.Length - 1];
             }
-            return OutputFolder + "\\" + BaseOutputFileName + "." + getSerial() + "." + ext;
+            return OutputFolder + "\\" + System.IO.Path.GetFileNameWithoutExtension(templateFileName) + "." + getSerial() + "." + ext;
         }
 
         protected void copyTemplate(string targetFile)

@@ -17,6 +17,10 @@ namespace etl.lib.extractor
 
         }
 
+        public ExcelExtractor(Arguments arg) : base(arg)
+        { }
+
+
         /*
          * Adapted from stackoverflow post
          * https://stackoverflow.com/questions/1206023/how-to-get-current-property-name-via-reflection

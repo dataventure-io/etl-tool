@@ -1,32 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace etl.lib.util
 {
-    public class Arguments
+    public class Arguments 
     {
-        System.Collections.Generic.Dictionary<string, string> arguments = new Dictionary<string, string>();
+        Dictionary<string,object> arguments = null;
 
-        public void addArgument( string name, string value )
-        {
-            arguments.Add(name, value);
-        }
-
-
-        public string getValue(string key)
-        {
-            string val = string.Empty;
-
-            if (arguments.ContainsKey(key))
-            {
-                val = arguments[key];
-            }
-
-            return val;
-        }
 
         public string getValue(Type t, string m)
         {
@@ -37,14 +23,54 @@ namespace etl.lib.util
                 m = m.Replace("get_", "");
             }
 
-            string key = t.Name + "." + m;
+            string key = t.Name ;
 
             if (arguments.ContainsKey(key))
             {
-                val = arguments[key];
+                Dictionary<string,object> members = (Dictionary<string, object>) arguments[key];
+
+                if (members.ContainsKey(m))
+                {
+                    val = (string) members[m];
+                }
             }
 
             return val;
+        }
+
+        public static Arguments loadConfig(string filename )
+        {
+            Arguments arg = new Arguments();
+
+            System.IO.StreamReader file =   new System.IO.StreamReader(filename);
+            string jsonText = file.ReadToEnd();
+            file.Close();
+
+            arg.arguments = (Dictionary<string, object>) deserialize(jsonText);
+
+            return arg;
+        }
+
+        protected  static object deserialize(string json)
+        {
+            return toObject(JToken.Parse(json));
+        }
+
+        protected  static object toObject(JToken token)
+        {
+            switch (token.Type)
+            {
+                case JTokenType.Object:
+                    return token.Children<JProperty>()
+                                .ToDictionary(prop => prop.Name,
+                                              prop => toObject(prop.Value));
+
+                case JTokenType.Array:
+                    return token.Select(toObject).ToList();
+
+                default:
+                    return ((JValue)token).Value;
+            }
         }
     }
 }

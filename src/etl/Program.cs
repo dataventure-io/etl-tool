@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using etl.lib.util;
 using etl.lib.control;
-
+using etl.lib.extractor;
 namespace etl
 {
     public class Program
@@ -14,17 +14,21 @@ namespace etl
         {
             Arguments arg = CommandLineParser.parse(args);
 
+            Console.WriteLine(arg.getValue( typeof (etl.lib.extractor.ExcelExtractor), "ExcelFile"));
+
+            /*
             Controller controller = new Controller();
 
             etl.lib.util.Logger.infoEvent += Logger_infoEvent;
             etl.lib.util.Logger.debugEvent += Logger_debugEvent;
             etl.lib.util.Logger.errorEvent += Logger_errorEvent;
+           
 
             controller.execute(arg);
 
             Console.ReadLine();
 
-
+            */
         }
 
         private static void Logger_errorEvent(DateTime dateTime, string message)

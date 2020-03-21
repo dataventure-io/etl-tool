@@ -13,11 +13,22 @@ namespace etl.lib.transformer
         
         protected Arguments arguments = null;
 
+        public AbstractTransformer(Arguments arg)
+        {
+            setArgs(arg);
+        }
+
+        public AbstractTransformer()
+        {
+
+        }
+
         public virtual DataTable transform( DataTable data)
         {
             throw new NotImplementedException();
         }
 
+        
         public void setArgs(Arguments arg)
         {
             this.arguments = arg;

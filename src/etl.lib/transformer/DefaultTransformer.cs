@@ -10,7 +10,12 @@ namespace etl.lib.transformer
 {
     public class DefaultTransformer : AbstractTransformer, ITransformer
     {
-        public DefaultTransformer()
+        public DefaultTransformer():base()
+        {
+
+        }
+
+        public DefaultTransformer(Arguments arg):base(arg)
         {
 
         }
