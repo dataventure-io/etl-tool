@@ -14,6 +14,12 @@ namespace etl.lib.extractor
 {
     public class CsvExtractor : AbstractExtractor, IExtractor
     {
+        public CsvExtractor()
+        { }
+
+        public CsvExtractor(Arguments arg) : base(arg)
+        { }
+
         public override DataTable extract()
         {
             DataTable dataTable = new DataTable();

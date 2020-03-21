@@ -24,6 +24,11 @@ namespace etl.lib.loader
 
         }
 
+        public SqlServerLoader(Arguments arg):base(arg)
+        {
+
+        }
+
         string Server
         {
             get

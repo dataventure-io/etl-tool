@@ -17,6 +17,11 @@ namespace etl.lib.extractor
 
         }
 
+        public SqlServerExtractor(Arguments arg) : base(arg)
+        {
+
+        }
+
         public string Server
         {
             get

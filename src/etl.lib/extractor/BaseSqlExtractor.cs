@@ -16,6 +16,13 @@ namespace etl.lib.extractor
 
         }
 
+        public BaseSqlExtractor(Arguments arg):base(arg)
+        {
+
+        }
+
+
+
         protected virtual string getConnectionString()
         {
             return "";

@@ -1,0 +1,12 @@
+{
+	"ExcelExtractor": {
+
+		"ExcelFile": "C:\\src\\dataventure-io\\etl-tool\\data\\names-500.xlsx",
+		"SheetName": "us-500"
+	},
+	"SqlServerLoader": {
+		"Server": "localhost",
+		"Database": "EtlTest",
+		"Table": "string_test"
+	}
+}

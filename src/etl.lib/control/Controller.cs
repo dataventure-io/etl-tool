@@ -17,7 +17,7 @@ namespace etl.lib.control
     {
         Arguments arguments = null;
 
-        List<System.Reflection.Assembly> assemblies = new List<System.Reflection.Assembly>();
+        List<System.Reflection.Assembly> assemblies = null; 
 
         public void execute(Arguments arg)
         {
@@ -49,6 +49,8 @@ namespace etl.lib.control
         private void loadAssemblies()
         {
             string appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+            assemblies = new List<System.Reflection.Assembly>();
 
             string[] dlls = Directory.GetFiles(appPath, "*.dll");
 

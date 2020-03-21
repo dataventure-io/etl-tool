@@ -12,6 +12,15 @@ namespace etl.lib.extractor
     {
         protected Arguments arguments = null;
 
+        public AbstractExtractor()
+        {
+
+        }
+
+        public AbstractExtractor( Arguments arg)
+        {
+            setArgs(arg);
+        }
 
         public virtual DataTable extract()
         {
