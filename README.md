@@ -2,11 +2,10 @@
 
 A simple tool for extracting, transforming, and loading data using PowerShell and .NET.
 
-The ETL tool:
-* extracts from SQL Server, Excel, or CSV data sources.
-* loads into SQL Server, Excel, or CSV targets
-* uses a PowerShell driver script 
-* can use PowerShell lambda functions to transform data
+The ETL tool uses a PowerShell driver script to:
+* extract from SQL Server, Excel, or CSV data sources.
+* optionally transform data using a PowerShell lambda function
+* load into SQL Server, Excel, or CSV targets
 
 
 ## Sample ETL ##
@@ -72,7 +71,7 @@ Transform-DataTable $first_name_upper $data
 $loader.load($data)
 ```
 
-## Downloading and Binaries ##
+## Downloading and Installation ##
 
 The current release is
 
@@ -83,6 +82,8 @@ To install:
 * Unzip the release file to an installation folder
 * Create an ETL_TOOL_HOME environment variable that references the installation folder
 * Add %ETL_TOOL_HOME% to the PATH
+
+Note that Excel support requires the [Microsoft Access database engine 2010](https://www.microsoft.com/en-US/download/details.aspx?id=13255).
 
 ## Command Line Usage ##
 
@@ -140,5 +141,10 @@ The current release includes the following loaders:
 }
 ```
 
-##
+## Configuration Parameters ##
+
+Extractor Type | Parameter | Description
+**ExcelExtractor**  |    |   
+ExcelExtractor | ExcelFile | Absolute location to a source data file.
+ExcelExtractor | SheetName | Sheet name within the source Excel data file
 
