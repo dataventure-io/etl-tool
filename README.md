@@ -145,7 +145,12 @@ The current release includes the following loaders:
 
 Extractor Type | Parameter | Description
 ---------------|-----------|----------------------------------------------| 
-**ExcelExtractor**  |    |   |
 ExcelExtractor | ExcelFile | Absolute location to a source data file. |
 ExcelExtractor | SheetName | Sheet name within the source Excel data file |
+CsvExtractor   | SourceDirectory | The source directory where csv data files are located.  Will process all files in directory. Mutually exclusive to SourceFile parameter. |
+CsvExtractor   | SourceFile |  The absolute path to filename to process.|
+CsvExtractor   | ProcessedFolder | Optional. If specified, source files are moved to this absolute folder location. |
+SqlServerExtractor   | Server |  Source server hostname. |
+SqlServerExtractor   | Database |  Source database |
+SqlServerExtractor   | Query |  Source query |
 
