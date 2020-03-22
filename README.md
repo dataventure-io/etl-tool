@@ -1,11 +1,11 @@
-# ETL Tool #
+# PowerShell ETL Tool #
 
 A simple tool for extracting, transforming, and loading data using PowerShell and .NET.
 
 The ETL tool uses a PowerShell driver script to:
 * extract from SQL Server, Excel, or CSV data sources.
 * optionally transform data using a PowerShell lambda function
-* load into SQL Server, Excel, or CSV targets
+* load into SQL Server (using SQL Bulk Loading API), Excel, or CSV targets
 
 
 ## Sample ETL ##
