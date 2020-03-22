@@ -11,7 +11,7 @@ The ETL tool:
 
 ## Sample ETL ##
 
-The example below loads data from an Excel data source, transforms the data using a 
+The example below loads data from an Excel data source, transforms the data using a powershell script.
 
 ```powershell 
 param
@@ -19,6 +19,7 @@ param
     [string]$configFile
 )
 
+# generic lambda definition to transform data
 function Transform-DataTable
 {
     param (
@@ -34,6 +35,7 @@ function Transform-DataTable
     $dataRows | % { &$Expression $_ }
 }
 
+# sample lambda callback function to convert the first_name column to uppercase
 $first_name_upper = 
     {   param($dataRow) 
         $first_name = ([string]$dataRow["first_name"]).ToUpper()
@@ -41,20 +43,27 @@ $first_name_upper =
         $dataRow["first_name"] = $first_name
     }
 
-
+# load dependencies
 [System.Reflection.Assembly]::LoadFile("$($env:ETL_TOOL_HOME)\bin\Newtonsoft.Json.dll")
 [System.Reflection.Assembly]::LoadFile("$($env:ETL_TOOL_HOME)\bin\Antlr4.Runtime.dll")
 [System.Reflection.Assembly]::LoadFile("$($env:ETL_TOOL_HOME)\bin\etl.lib.dll")
 
+# load the runtime arguments from the json configuration file.
 $arg = [etl.lib.util.Arguments]::loadConfig($configFile)
 
+# instantiate an ExcelExtractor object
 $extractor = New-Object etl.lib.extractor.ExcelExtractor($arg)
+
+# instantiate a SQLServer loader object
 $loader = New-Object etl.lib.loader.SqlServerLoader($arg)
 
+# extract the data from an Excel sheet
 $data = $extractor.extract()
 
+# transform the data using the lambda function
 Transform-DataTable $first_name_upper $data
 
+#load the data into SQL Server
 $loader.load($data)
 ```
 
