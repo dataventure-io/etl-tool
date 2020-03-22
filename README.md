@@ -143,14 +143,30 @@ The current release includes the following loaders:
 
 ## Configuration Parameters ##
 
+### Extraction ###
+
 Extractor Type | Parameter | Description
 ---------------|-----------|----------------------------------------------| 
-ExcelExtractor | ExcelFile | Absolute location to a source data file. |
+ExcelExtractor | ExcelFile | Absolute location to a source data file |
 ExcelExtractor | SheetName | Sheet name within the source Excel data file |
 CsvExtractor   | SourceDirectory | The source directory where csv data files are located.  Will process all files in directory. Mutually exclusive to SourceFile parameter. |
-CsvExtractor   | SourceFile |  The absolute path to filename to process.|
+CsvExtractor   | SourceFile |  The absolute path to filename to process|
 CsvExtractor   | ProcessedFolder | Optional. If specified, source files are moved to this absolute folder location. |
-SqlServerExtractor   | Server |  Source server hostname. |
+SqlServerExtractor   | Server |  Source server hostname |
 SqlServerExtractor   | Database |  Source database |
 SqlServerExtractor   | Query |  Source query |
 
+### Loading ###
+
+Loader Type | Parameter | Description
+----------- | --------- | -----------------------------------------------------|
+ExcelLoader | OutputFolder | The output folder where the file will be written
+ExcelLoader | BaseOutputFilename | The filename "prefix".  Each output file will be serialized with a date/time stamp to keep the files unique.
+ExcelLoader | TemplateFilename |  An optional "starter" Excel file.  Can include things like pre-created pivots.  Data will be written to a sheet indicated by the SheetName parameter.
+ExcelLoader | SheetName | Identifies the target sheet to receive the data.  The entire sheet will be erased before data is written.
+CsvLoader | OutputFolder | The output folder where the file will be written.
+CsvLoader | BaseOutputFilename | The filename "prefix".  Each output file will be serialized with a date/time stamp to keep the files unique.
+CsvLoader | Delimiter | Designates the field separator character to be used.
+SqlServerExtractor   | Server |  Target server hostname |
+SqlServerExtractor   | Database |  Target database |
+SqlServerExtractor   | Table |  Target table |
