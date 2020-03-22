@@ -58,7 +58,7 @@ $arg = [etl.lib.util.Arguments]::loadConfig($configFile)
 # instantiate an ExcelExtractor object
 $extractor = New-Object etl.lib.extractor.ExcelExtractor($arg)
 
-# instantiate a SQLServer loader object
+# instantiate a SQLServerLoader object
 $loader = New-Object etl.lib.loader.SqlServerLoader($arg)
 
 # extract the data from an Excel sheet
@@ -81,7 +81,7 @@ To install:
 
 * Unzip the release file to an installation folder
 * Create an ETL_TOOL_HOME environment variable that references the installation folder
-* Add %ETL_TOOL_HOME% to the PATH
+* Add %ETL_TOOL_HOME%\bin to the PATH
 
 Note that Excel support requires the [Microsoft Access database engine 2010](https://www.microsoft.com/en-US/download/details.aspx?id=13255).
 
