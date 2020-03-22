@@ -5,7 +5,7 @@ A simple tool for extracting, transforming, and loading data using PowerShell an
 The ETL tool:
 * extracts from SQL Server, Excel, or CSV data sources.
 * loads into SQL Server, Excel, or CSV targets
-* uses PowerShell to script the execution
+* uses a PowerShell driver script 
 * can use PowerShell lambda functions to transform data
 
 
@@ -14,6 +14,11 @@ The ETL tool:
 The example below loads data from an Excel data source, transforms the data using a powershell script.
 
 ```powershell 
+<# Sample PowerShell driver script etl.ps1
+
+Usage:   etl.ps1 <config_file.json>
+#>
+
 param
 (
     [string]$configFile
@@ -67,7 +72,7 @@ Transform-DataTable $first_name_upper $data
 $loader.load($data)
 ```
 
-### Downloading and Binaries ###
+## Downloading and Binaries ##
 
 The current release is
 
@@ -79,16 +84,51 @@ To install:
 * Create an ETL_TOOL_HOME environment variable that references the installation folder
 * Add %ETL_TOOL_HOME% to the PATH
 
-### Command Line Usage ###
+## Command Line Usage ##
 
-### Configuration File ###
+The driver script runs in PowerShell 5.1 or later.  (Note that it does not yet run in PowerShell 7).
 
-Sample configuration file:
+The command line for the sample driver script is:
+
+`PS >.\etl.ps1 <config_file.json>`
+
+where `config_file.json` specifies the parameters for the extractor and loader classes.
+
+## Configuration File ##
+
+The JSON syntax specifies top-level objects for each extractor or loader class type.
 
 ```json
 {
-	"ExcelExtractor": {
+	"extractor_type": {
+		"Param1": "Value1",
+		"Param2": "Value2",
+		"ParamN": "ValueN"
+	},
+	"loader_type": {
+		"Param1": "Value1",
+		"Param2": "Value2",
+		"ParamN": "ValueN"
+	}
+}
+```
 
+The current release includes the following extractors:
+
+* `ExcelExtractor`
+* `CsvExtractor`
+* `SQLServerExtractor`
+
+The current release includes the following loaders:
+
+* `ExcelLoader`
+* `CsvLoader`
+* `SqlServerLoader`
+
+### Sample Configuration File ###
+```json
+{
+	"ExcelExtractor": {
 		"ExcelFile": "C:\\src\\dataventure-io\\etl-tool\\data\\names-500.xlsx",
 		"SheetName": "us-500"
 	},
@@ -99,4 +139,6 @@ Sample configuration file:
 	}
 }
 ```
+
+##
 
