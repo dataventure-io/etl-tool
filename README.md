@@ -144,7 +144,8 @@ The current release includes the following loaders:
 ## Configuration Parameters ##
 
 Extractor Type | Parameter | Description
-**ExcelExtractor**  |    |   
-ExcelExtractor | ExcelFile | Absolute location to a source data file.
-ExcelExtractor | SheetName | Sheet name within the source Excel data file
+---------------|-----------|----------------------------------------------| 
+**ExcelExtractor**  |    |   |
+ExcelExtractor | ExcelFile | Absolute location to a source data file. |
+ExcelExtractor | SheetName | Sheet name within the source Excel data file |
 
