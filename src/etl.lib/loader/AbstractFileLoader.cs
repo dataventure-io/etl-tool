@@ -48,7 +48,7 @@ namespace etl.lib.loader
         {
             get
             {
-                string baseName = arguments.getValue(GetType(), MethodBase.GetCurrentMethod().Name);
+                string baseName = arguments.getValue(GetType(), MethodBase.GetCurrentMethod().Name
                 if (string.IsNullOrEmpty(baseName)) baseName = System.IO.Path.GetFileNameWithoutExtension(TemplateFileName);
                 return baseName;
             }
